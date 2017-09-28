@@ -1,0 +1,396 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,800,700,300);
+@import url(https://fonts.googleapis.com/css?family=Squada+One);
+
+html {
+    margin-top: -20px;
+    width: 100%;
+    font-family: 'helvetica neue', calibri;
+    background-color: #e6f2e9;
+    overflow-x: hidden;
+}
+
+#top-banner {
+    margin-top: 20px;
+    background-color: #98e1f2;
+    height: 130px;
+    text-align: center;
+}
+
+#main-bit {
+    margin-top: -126px;
+}
+
+#logo {
+    font-family: 'Open Sans', sans-serif;
+    color: black;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 63px;
+    font-weight: 800;
+    letter-spacing: -3px;
+    line-height: 1;
+    text-shadow: yellow 3px 2px 0;
+    position: relative;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#logo:after {
+    content: "DATABASE WEBSITE";
+    left: 8px;
+    top: 34px;
+    margin-top: -59px;
+    margin-left: px;
+}
+
+#logo:after {
+    background: url(https://subtlepatterns.com/patterns/crossed_stripes.png) repeat;
+    background-image: -webkit-linear-gradient(left top, transparent 0%, transparent 25%, #555 25%, #555 50%, transparent 50%, transparent 75%, #555 75%);
+    background-size: 4px 4px;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    z-index: -5;
+    display: block;
+    text-shadow: none;
+}
+
+#database {
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 1px 3px black;
+}
+
+#enter-details2 {
+    margin-top: -18px;
+    padding-bottom: 24px;
+}
+
+#enter-details {
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 1px 3px black;
+}
+
+
+button {
+    background: rgba(220, 255, 224, 0.5);
+    font-size: 110%;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    padding: 1% 5%;
+    margin-top: 3%;
+    border-radius: 8px;
+    width: 19%;
+    height: 5%;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+input[type=text],
+select,
+textarea {
+    padding: 12px;
+    border: 1px solid #acacb0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=button] {
+    background-color: #af4f57;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+input[type=button]:hover {
+    background-color: #af4f57;
+}
+
+input[type=reset] {
+    background-color: #af4f57;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+input[type=reset]:hover {
+    background-color: #af4f57;
+}
+
+#landscape-image {
+    width: 2000px;
+    height: 110px;
+}
+
+#landscape-image2 {
+    width: 700px;
+    height: 260px;
+    margin-top: -400px;
+    margin-left: 950px;
+}
+
+#date-hover {
+    text-align: center;
+    margin-left: 130px;
+    margin-top: 15px;
+    width: 250px;
+    padding: 10px;
+    text-align: center;
+    border: 3px dashed #ccc;
+}
+
+
+/* Clocks */
+
+#clock1 {
+    position: absolute;
+    margin-left: 10px;
+    margin-top: -107.5px;
+}
+
+/**/
+
+body {
+    margin: 0 !important;
+    padding: 0;
+    width: 100%;
+}
+
+header {
+    text-align: center;
+}
+
+header img {
+    width: 700px;
+    height: 150px;
+    clear: both;
+}
+
+h1 {
+    font-family: verdana;
+    color: black;
+    text-align: center;
+    display: block;
+    clear: both;
+    text-shadow: 0 0 2px yellow, 0 0 3px yellow;
+}
+
+h2 {
+    font-size: 100%;
+    color: red;
+    text-align: center;
+    clear: both;
+}
+
+h3 {
+    font-size: 160%;
+    text-align: center;
+    clear: both;
+    color: cadetblue;
+    text-shadow: grey
+}
+
+h4 {
+    font-weight: bold;
+    font-size: 120%;
+}
+
+#welcome {
+    font-size: 30px;
+    color: #289ee2;
+    text-align: center;
+    margin-top: 50px;
+    text-shadow: 1px 1px 1px grey;
+}
+
+#main-content {
+    width: 100%;
+    color: #847c7c;
+    clear: both;
+    position: absolute;
+    text-align: center;
+    margin-top: 27px
+}
+
+#left-column {
+    width: 49%;
+    height: 471px;
+    clear: left;
+    vertical-align: top;
+    display: inline-block;
+    border: solid 1px #b8bdc6;
+    box-shadow: #ccc 2px 2px 2px;
+}
+
+#right-column {
+    vertical-align: top;
+    color: #847c7c;
+    width: 49%;
+    display: inline-block;
+    clear: right;
+    border: solid 1px #b8bdc6;
+    box-shadow: #ccc 2px 2px 2px;
+    padding-bottom: none;
+}
+
+#trees-image {
+    float: left;
+    clear: both;
+}
+
+#work-info {
+    padding: 7px;
+}
+
+#coding-languages {
+    text-align: center;
+}
+
+#box {
+    text-align: left;
+    padding: 30px;
+    color: black;
+    padding: 20px 30px;
+    background: #dcdfe5;
+    display: inline-block;
+    border-radius: 10px;
+    margin-left: 300px;
+    margin-top: 50px;
+
+}
+
+#events {
+    font-size: 70%;
+    margin-right: -40px;
+    padding: 20px;
+    color: #847c7c;
+    font-size: 12px;
+    margin-top: 70px;
+}
+
+#about-me {
+    text-align: center;
+}
+
+.mainMenu {
+    /*width: 700;*/
+    background-color: #333;
+    clear: both;
+    margin-top: -9px;
+    text-align: center;
+    margin-left: -42px;
+}
+
+.nav {
+    text-align: center;
+    font-size: 22px;
+    width: 700px;
+    height: 35px;
+    clear: both;
+    display: inline-block;
+    background-color: #333;
+}
+
+.nav li {
+    margin: 2px;
+    padding: 5px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.nav li a {
+    display: block;
+    color: white;
+    text-shadow: 0 0 1px yellow, 0 0 1px yellow;
+    padding: 0 16px;
+    text-decoration: none;
+    float: left;
+    text-align: center;
+}
+
+.nav li:hover {
+    background-color: #111;
+}
+
+.myList {
+    list-style-type: none;
+    text-align: center;
+}
+
+#social-media {
+    background-color: #333;
+    clear: both;
+}
+
+.second-list {
+    text-align: left;
+    font-size: 22px;
+    width: 700px;
+    height: 35px;
+    clear: both;
+    display: inline-block;
+}
+
+.second-list li {
+    margin: 2px;
+    padding: 5px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.second-list li a {
+    display: block;
+    color: deepskyblue;
+    padding: 0 16px;
+    text-decoration: none;
+    float: left;
+    text-align: center;
+
+}
+
+.second-list li:hover {
+    background-color: #dcdfe5;
+}
+
+#facebook-logo {
+    margin-left: -516px;
+    margin-top: -27px;
+}
+
+#twitter-logo {
+    margin-left: -243px;
+    margin-top: -51px;
+}
+
+#linked-in-logo {
+    margin-right: -9px;
+    margin-top: -43px
+}
+
+#tumblr-logo {
+    margin-right: -268px;
+    margin-top: -37px;
+}
+
+#pinterest-logo {
+    margin-right: -530px;
+    margin-top: -39px;
+}
+
+#social-media-logos {
+    margin-top: -36px;
+}

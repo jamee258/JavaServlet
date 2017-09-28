@@ -1,0 +1,197 @@
+package org.o7planning.tutorial.servlet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.*;
+import java.util.Properties;
+import java.util.stream.Collectors;
+
+@SuppressWarnings("Duplicates")
+@WebServlet(name = "DbServlet", urlPatterns = "/store")
+public class DbServlet extends HttpServlet {
+    private static final String PROPERTY_FILE_LOCATION = "/configuration.properties";
+    private static Properties properties = new Properties();
+    private static Logger LOGGER = LoggerFactory.getLogger(DbServlet.class);
+    private static Connection dbConnection;
+    private static String DB_SCHEMA;
+    private static String DB_TABLE;
+
+    static {
+        try {
+            properties.load(DbServlet.class.getClassLoader().getResourceAsStream(PROPERTY_FILE_LOCATION));
+            DB_SCHEMA = properties.getProperty("DB_SCHEMA");
+            DB_TABLE = properties.getProperty("DB_TABLE");
+            startConnection();
+        } catch (IOException | SQLException | ClassNotFoundException e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+    }
+
+    /**
+     * @param req  - Client request
+     * @param resp - Server response
+     * @throws ServletException - possible exception if there is a problem with servlet
+     * @throws IOException      - possible exception if there is a stream error
+     */
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("id");
+        String query = "SELECT payload FROM " + DB_SCHEMA + '.' + DB_TABLE + " WHERE _id = " + '\'' + id + '\'' + ';';
+        LOGGER.info("Querying payload: " + id + " query: " + query);
+        executeQuery(query, resp);
+    }
+
+    /**
+     * @param req  - Client request
+     * @param resp - Server response
+     * @throws ServletException - possible exception if there is a problem with servlet
+     * @throws IOException      - possible exception if there is a stream error
+     */
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("id");
+        String jsonPayload = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        String insert = "INSERT INTO " + DB_SCHEMA + '.' + DB_TABLE + " (_id, payload) VALUES ('" + id + "', '" + jsonPayload + "');";
+        LOGGER.info("Inserting payload: " + id + " json: " + jsonPayload + " insert: " + insert);
+        executeUpdate(insert, resp);
+    }
+
+    /**
+     * @param req  - Client request
+     * @param resp - Server response
+     * @throws ServletException - possible exception if there is a problem with servlet
+     * @throws IOException      - possible exception if there is a stream error
+     */
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("id");
+        String jsonPayload = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        String update = "UPDATE " + DB_SCHEMA + '.' + DB_TABLE + " SET payload='" + jsonPayload + "' WHERE _id='" + id + "';";
+        LOGGER.info("Updating payload: " + id + " json: " + jsonPayload + " update: " + update);
+        executeUpdate(update, resp);
+    }
+
+    /**
+     * @param req  - Client request
+     * @param resp - Server response
+     * @throws ServletException - possible exception if there is a problem with servlet
+     * @throws IOException      - possible exception if there is a stream error
+     */
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("id");
+        String jsonPayload = req.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
+        String update = "DELETE FROM " + DB_SCHEMA + '.' + DB_TABLE + " WHERE _id='" + id + "';";
+        LOGGER.info("Deleting entry id: " + id + " json: " + jsonPayload + " delete: " + update);
+        executeUpdate(update, resp);
+    }
+
+    /**
+     * Execute JDBC update
+     * TODO Add additional logging
+     *
+     * @param sql  - statement
+     * @param resp - HTTPResponse to be modified
+     */
+    private static void executeUpdate(String sql, HttpServletResponse resp) {
+        Statement stmt = null;
+        try {
+            startConnection();
+            stmt = dbConnection.createStatement();
+            int rs = stmt.executeUpdate(sql);
+            LOGGER.info("Update executed!");
+            resp.setStatus(HttpServletResponse.SC_OK);
+            resp.setHeader("Access-Control-Allow-Origin", "*");
+            resp.setContentType("application/json");
+            resp.getWriter().write(String.valueOf(rs));
+            resp.getWriter().flush();
+            if (resp.getWriter() != null) {
+                resp.getWriter().close();
+            }
+
+        } catch (SQLException | ClassNotFoundException | IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                closeConnection();
+            } catch (SQLException e) {
+                LOGGER.error(e.getMessage(), e);
+            }
+        }
+    }
+
+    /**
+     * Execute JDBC query
+     * TODO Add additional logging
+     *
+     * @param sql  - statement
+     * @param resp - HTTPResponse to be modified
+     */
+    private static void executeQuery(String sql, HttpServletResponse resp) {
+        Statement stmt = null;
+        try {
+            startConnection();
+            stmt = dbConnection.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            LOGGER.info("Query executed!");
+            rs.next();
+            resp.setStatus(HttpServletResponse.SC_OK);
+            resp.setHeader("Access-Control-Allow-Origin", "*");
+            resp.setContentType("application/json");
+            resp.getWriter().write(rs.getString("payload"));
+            resp.getWriter().flush();
+            if (resp.getWriter() != null) {
+                resp.getWriter().close();
+            }
+
+        } catch (SQLException | ClassNotFoundException | IOException e) {
+            LOGGER.error(e.getMessage(), e);
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                closeConnection();
+            } catch (SQLException e) {
+                LOGGER.error(e.getMessage(), e);
+            }
+        }
+    }
+
+    /**
+     * Start JDBC connection
+     *
+     * @throws ClassNotFoundException - possible exception if driver not found
+     * @throws SQLException           - exception if problems with connection
+     */
+    private static void startConnection() throws ClassNotFoundException, SQLException {
+        if (dbConnection == null || dbConnection.isClosed()) {
+            Class.forName(properties.getProperty("JDBC_DRIVER"));
+            dbConnection = DriverManager.getConnection(properties.getProperty("JDBC_CONNECTION_URL")
+                    , properties.getProperty("JDBC_USERNAME"), properties.getProperty("JDBC_PASSWORD"));
+            LOGGER.info("DB Connection started.");
+        }
+    }
+
+    /**
+     * Close JDBC connection
+     *
+     * @throws SQLException - exception if problems with connection
+     */
+    private static void closeConnection() throws SQLException {
+        if (dbConnection != null || !dbConnection.isClosed()) {
+            dbConnection.close();
+            LOGGER.info("DB Connection closed.");
+        }
+    }
+
+}

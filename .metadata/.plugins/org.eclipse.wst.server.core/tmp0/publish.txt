@@ -1,0 +1,4 @@
+#Tomcat publish data
+#Thu Sep 28 12:35:42 BST 2017
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\ISLAMM\\eclipse-workspace\\FirstSpringMVCProject\\WebContent\\WEB-INF\\lib\\spring-web-4.3.9.RELEASE-sources.jar=WEB-INF/lib/spring-web-4.3.9.RELEASE-sources.jar
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\ISLAMM\\eclipse-workspace\\FirstSpringMVCProject\\WebContent\\WEB-INF\\lib\\spring-web-4.3.9.RELEASE.jar=WEB-INF/lib/spring-web-4.3.9.RELEASE.jar

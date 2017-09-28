@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>My Website</title>
+    <link href="properties.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/autofill/2.2.2/css/autoFill.dataTables.min.css" type="text/css">
+    <script src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.datatables.net/autofill/2.2.2/js/dataTables.autoFill.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.datatables.net/select/1.2.3/js/dataTables.select.min.js"></script>
+</head>
+
+<body ng-app="module1">
+    <header>
+        <div id="top-banner">
+            <a href="/" id="logo">DATABASE WEBSITE</a>
+            <div id="second-title">
+                <h3>Deployment Architecture</h3>
+            </div>
+        </div>
+
+        <img id="landscape-image" src="https://als2dart.files.wordpress.com/2015/02/layer7.png" />
+        <div class="mainMenu">
+            <ul class="nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Media</a></li>
+                <li><a href="#">Subscribe</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div id="date-hover" onmouseover="mOver(this)" onmouseout="mOut(this)" style="background-color:#c8edf7;width:120px;height:20px;padding:40px;">
+        Hover For Date</div>
+
+    <script>
+        function mOver(obj) {
+            var now = new Date();
+            var days = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+            var months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+            var date = ((now.getDate() < 10) ? "0" : "") + now.getDate();
+
+            function fourdigits(number) {
+                return (number < 1000) ? number + 1900 : number;
+            }
+            today = days[now.getDay()] + ", " +
+                months[now.getMonth()] + " " +
+                date + ", " +
+                (fourdigits(now.getYear()));
+
+
+            obj.innerHTML = today;
+        }
+
+        function mOut(obj) {
+            obj.innerHTML = "Hover For Date"
+        }
+    </script>
+
+    <iframe id="clock1" src="http://free.timeanddate.com/clock/i5wg5l1a/n136/szw110/szh110/hoc888/hbw3/hfceee/cf100/hgr0/hcw1/hcd86/fav0/fiv0/mqc000/mql25/mqw4/mqd96/mhc000/mhl20/mhw6/mhd96/mmc000/mms4/mml10/mmw2/mmd96/hhw16/hmw8/hmr4/hss3/hsl90/hsw3" frameborder="0" width="110" height="110"></iframe>
+
+    <div id="main-bit">
+
+        <h3 id="welcome">Website Homepage</h3>
+
+        <div ng-controller="controller1" id="main-content">
+
+            <div id="left-column">
+
+
+                <a id="database">Project Table Details</a>
+                <br>
+                <br>
+                <table id="mainPageTable" class="dataTable">
+                    <thead>
+                        <tr>
+                            <th>Project Name</th>
+                            <th>Start Date</th>
+                            <th>Estimated Completion Date</th>
+                            <th>Estimated Cost</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <div id="right-column">
+                <div id="main-image">
+                    <img src="https://static1.squarespace.com/static/54306e2ae4b0a9d0a580f8e8/t/545bc710e4b02f59caea5b56/1416776826931/Drawing0" />
+                </div>
+
+                <div id="enter-details2">
+                    <a id="enter-details">View/Edit Table Contents</a>
+                </div>
+
+                <form id="dataCaptureForm" name="dataCapture">
+                    <input type="text" id="nameInputBox" name="Name" placeholder="Project Name">
+                    <input type="text" id="unitPriceInputBox" name="Unit Price" placeholder="Project Start Date">
+                    <input type="text" id="stockLevel" name="Stock Level" placeholder="Project End Date">
+                    <input type="text" id="projectCost" name="Project Cost" placeholder="Project Cost">
+                </form>
+
+                <button class="browseButton">Browse</button>
+                <button class="addEntryButton">Add</button>
+                <button class="saveButton">Save</button>
+                <button class="deleteButton">Delete</button>
+
+            </div>
+
+            <img id="landscape-image2" src="C:\Users\ISLAMM\Pictures\vectorGraph.png" />
+
+            <hr>
+            <h4>Social Media</h4>
+            <div id="social-media-logos">
+                <div class="social-media">
+                    <ul class="second-list">
+                        <li><a href="http://facebook.com" target="_blank">Facebook</a></li>
+                        <li><a href="http://twitter.com" target="_blank">Twitter</a></li>
+                        <li><a href="http://linkedin.com" target="_blank">LinkedIn</a></li>
+                        <li><a href="http://tumblr.com" target="_blank">Tumblr</a></li>
+                        <li><a href="http://pinterest.com" target="_blank">Pinterest</a></li>
+                    </ul>
+                </div>
+                <div id="facebook-logo">
+                    <img src="fb-logo.jpg" width="50px" height="50px" />
+                </div>
+                <div id="twitter-logo">
+                    <img src="twitter-logo.png" width="45px" height="45px" />
+                </div>
+                <div id="linked-in-logo">
+                    <img src="linked-in-logo.png" width="33px" height="33px" />
+                </div>
+                <div id="tumblr-logo">
+                    <img src="tumblr-icon.png" width="33px" height="33px" />
+                </div>
+                <div id="pinterest-logo">
+                    <img src="pinterest-logo.png" width="39px" height="39px" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer></footer>
+</body>
+
+</html>
