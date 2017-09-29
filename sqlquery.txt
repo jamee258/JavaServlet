@@ -1,0 +1,10 @@
+EXEC sp_helplanguage;
+
+CREATE TABLE Projects(
+"Project Name" varchar(50), "Start Date" varchar(50), "Estimated Completion Date" varchar(50), "Estimated Cost" int);
+
+INSERT INTO Projects
+VALUES(
+'Project7', '18-05-2017', '19-08-2017', 80000);
+
+SELECT * FROM Projects;
